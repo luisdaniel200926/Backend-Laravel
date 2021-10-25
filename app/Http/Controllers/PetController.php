@@ -14,9 +14,16 @@ class PetController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('pet.index',[
+            'pets' => Pet::all()
+        ]);
     }
 
+
+    public function create(){
+        return view('pet.create');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -25,7 +32,17 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validData = $request->validate(
+            ['name' => 'required|min:3'],
+            ['name.required' => 'Name is required',
+                'title.min' => '3 characters at least for the name']);
+
+        $pet = new Pet();
+        $pet -> name = $validData['name'];
+        $pet -> type = $request->get('type');
+
+        $pet ->save();
+        return redirect ('/pets');
     }
 
     /**
@@ -36,9 +53,15 @@ class PetController extends Controller
      */
     public function show(Pet $pet)
     {
-        //
+        return $pet;
     }
 
+    public function edit($id){
+        $pet  = Pet::findOrFail($id);
+        return view('pet.edit',[
+            'pet'=>$pet
+        ]);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -46,9 +69,19 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pet $pet)
+    public function update(Request $request, $id)
     {
-        //
+        $validData = $request->validate(
+            ['name' => 'required|min:3'],
+            ['name.required' => 'Name is required',
+                'title.min' => '3 characters at least for the name']);
+
+        $pet  = Pet::findOrFail($id);
+        $pet -> name = $validData['name'];
+        $pet -> type = $request->get('type');
+        $pet ->save();
+
+        return redirect ('/pets');
     }
 
     /**
@@ -59,6 +92,9 @@ class PetController extends Controller
      */
     public function destroy(Pet $pet)
     {
-        //
+        $pet->delete();
+
+
+        return response()->json();
     }
 }
