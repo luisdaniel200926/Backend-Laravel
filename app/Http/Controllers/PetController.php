@@ -90,11 +90,12 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pet $pet)
+    public function destroy(Request $request,$id)
     {
+
+        $pet  = Pet::findOrFail($id);
         $pet->delete();
 
-
-        return response()->json();
+        return redirect ('/pets');
     }
 }

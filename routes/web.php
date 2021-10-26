@@ -18,3 +18,12 @@ Route::get('/', function () {
 });
 
 Route::resource('/pets',\App\Http\Controllers\PetController::class);
+Route::get('/pets/{id}/deletePet',[\App\Http\Controllers\PetController::class,'destroy']);
+Route::resource('/users',\App\Http\Controllers\UserController::class);
+Route::get('/users/{id}/deleteUser',[\App\Http\Controllers\UserController::class,'destroy']);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

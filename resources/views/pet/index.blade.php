@@ -37,6 +37,10 @@
                         <td>
                             <a href="/pets/{{$pet->id}}/edit">Edit</a>
                         </td>
+                        <td>
+                            <a class="btn btn-danger" href="/pets/{{$pet->id}}/deletePet">Delete</a>
+
+                        </td>
                     </tr>
 
                 @endforeach
