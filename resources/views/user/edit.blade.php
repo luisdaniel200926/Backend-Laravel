@@ -2,14 +2,16 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col">
-            <h1>Edit User {{$user->name}}</h1>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col">
             <a class="btn btn-secondary" href="/users">Back</a>
+        </div>
+    </div>
+    @if(Auth::user()->type == 'admin')
+    <div class="row">
+        <div class="col">
+            <h1>Edit User {{$user->name}}</h1>
         </div>
     </div>
     <div class="row">
@@ -95,4 +97,5 @@
             </table>
         </div>
     </div>
+    @endif
 @endsection

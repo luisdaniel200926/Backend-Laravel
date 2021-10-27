@@ -24,7 +24,6 @@
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Type</th>
-                    <th scope="col">Owner</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,9 +35,6 @@
                         </td>
                         <td>
                             {{$pet ->type }}
-                        </td>
-                        <td>
-                            {{$pet ->user_id}}
                         </td>
                         <td>
                             <a href="/pets/{{$pet->id}}/edit">Edit</a>

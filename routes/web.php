@@ -17,11 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/pets',\App\Http\Controllers\PetController::class);
-Route::get('/pets/{id}/deletePet',[\App\Http\Controllers\PetController::class,'destroy']);
-Route::resource('/users',\App\Http\Controllers\UserController::class);
-Route::get('/me',[\App\Http\Controllers\UserController::class,'show']);
-Route::get('/users/{id}/deleteUser',[\App\Http\Controllers\UserController::class,'destroy']);
+Route::resource('/pets',\App\Http\Controllers\PetController::class)->middleware('auth:sanctum');;
+Route::get('/pets/{id}/deletePet',[\App\Http\Controllers\PetController::class,'destroy'])->middleware('auth:sanctum');;
+Route::resource('/users',\App\Http\Controllers\UserController::class)->middleware('auth:sanctum');;
+Route::get('/me',[\App\Http\Controllers\UserController::class,'show'])->middleware('auth:sanctum');;
+Route::get('/users/{id}/deleteUser',[\App\Http\Controllers\UserController::class,'destroy'])->middleware('auth:sanctum');;
 
 
 Auth::routes();
