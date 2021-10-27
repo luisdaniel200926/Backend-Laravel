@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PetController extends Controller
 {
+    public function __construct()
+    {
+        // check if user is logged in, if not then redirect them to the login page
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -32,6 +37,7 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $validData = $request->validate(
             ['name' => 'required|min:3'],
             ['name.required' => 'Name is required',
@@ -40,6 +46,7 @@ class PetController extends Controller
         $pet = new Pet();
         $pet -> name = $validData['name'];
         $pet -> type = $request->get('type');
+        $pet -> user_id = $request->get('userid');
 
         $pet ->save();
         return redirect ('/pets');

@@ -17,6 +17,7 @@ class CreatePetsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
         });
     }

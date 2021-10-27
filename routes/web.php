@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::resource('/pets',\App\Http\Controllers\PetController::class);
 Route::get('/pets/{id}/deletePet',[\App\Http\Controllers\PetController::class,'destroy']);
 Route::resource('/users',\App\Http\Controllers\UserController::class);
+Route::get('/me',[\App\Http\Controllers\UserController::class,'show']);
 Route::get('/users/{id}/deleteUser',[\App\Http\Controllers\UserController::class,'destroy']);
 
 

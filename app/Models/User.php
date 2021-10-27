@@ -43,4 +43,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function pets(){
+        return $this->hasMany(Pet::class);
+    }
+
+
+    public function setNameAttribute($value){
+        $this->attributes['name'] =  strtoupper($value);
+    }
+
+    public function setLastnameAttribute($value){
+        $this->attributes['lastname'] =  strtoupper($value);
+    }
+
+    public function setTypeAttribute($value){
+        $this->attributes['type'] =  strtolower($value);
+    }
+
+    public function setEmailAttribute($value){
+        $this->attributes['email'] =  strtolower($value);
+    }
+
 }

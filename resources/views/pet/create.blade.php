@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
@@ -35,6 +35,7 @@
                             <option>Hamster</option>
                         </select>
                     </div>
+                    <input type="hidden" name="userid" id="userid" value={{ Auth::user()->id }}>
                     <button class="btn btn-primary" type="submit">Submit</button>
                 </form>
             </table>

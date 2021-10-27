@@ -1,21 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="row">
         <div class="col">
-            <a class="btn btn-secondary" href="/me">Back</a>
-        </div>
-    </div>
-    @if(Auth::user()->type == 'admin')
-    <div class="row">
-        <div class="col">
-            <h1>Users</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <a class="btn btn-primary" href="/users/create">Add User</a>
+            <h1>My Data</h1>
         </div>
     </div>
     <div class="row">
@@ -29,29 +17,27 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($users as $user)
                     <tr >
                         <td >
-                            {{$user ->name }}
+                            {{Auth::user()->name }}
                         </td>
                         <td >
-                            {{$user ->lastname }}
+                            {{ Auth::user()->lastname }}
                         </td>
                         <td>
-                            {{$user ->type }}
+                            {{Auth::user()->type }}
                         </td>
                         <td>
-                            <a href="/users/{{$user->id}}/edit">Edit</a>
+                            <a class="btn btn-secondary" href="/pets">My pets</a>
                         </td>
-                        <td>
-                            <a class="btn btn-danger" href="/users/{{$user->id}}/deleteUser">Delete</a>
-
-                        </td>
+                        @if(Auth::user()->type == 'admin')
+                            <td>
+                                <a class="btn btn-secondary" href="/users">All users</a>
+                            </td>
+                            @endif
                     </tr>
-                @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    @endif
 @endsection

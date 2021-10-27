@@ -58,9 +58,9 @@ class UserController extends Controller
     }
 
 
-    public function show(User $user)
+    public function show(Request $request)
     {
-        return $user;
+        return view('user.me');
     }
 
     public function edit($id){
@@ -72,17 +72,23 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        /*$validData = $request->validate(
-            ['name' => 'required|min:3'],
-            ['name.required' => 'Name is required',
-                'title.min' => '3 characters at least for the name']);
+        $validData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
 
-        $pet  = Pet::findOrFail($id);
-        $pet -> name = $validData['name'];
-        $pet -> type = $request->get('type');
-        $pet ->save();
+        $user  = User::findOrFail($id);
+        $user -> name = $validData['name'];
+        $user -> lastname = $validData['lastname'];
+        $user -> email = $validData['email'];
+        $user -> type = $request->get('type');
+        $user -> password = Hash::make($validData['password']);
+        $user ->save();
 
-        return redirect ('/pets');*/
+        return redirect ('/users');
     }
 
 
@@ -95,4 +101,5 @@ class UserController extends Controller
         return redirect ('/users');
 
     }
+
 }

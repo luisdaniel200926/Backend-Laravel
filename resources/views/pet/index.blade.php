@@ -1,14 +1,20 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
         <div class="col">
             <h1>Pets</h1>
         </div>
+
     </div>
     <div class="row">
         <div class="col">
             <a class="btn btn-primary" href="/pets/create">Add Pet</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-secondary" href="/me">Back</a>
         </div>
     </div>
     <div class="row">
@@ -22,7 +28,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($pets as $pet)
+                @foreach($pets->where('user_id',Auth::user()->id) as $pet )
 
                     <tr >
                         <td >
@@ -32,7 +38,7 @@
                             {{$pet ->type }}
                         </td>
                         <td>
-                            Default
+                            {{$pet ->user_id}}
                         </td>
                         <td>
                             <a href="/pets/{{$pet->id}}/edit">Edit</a>
