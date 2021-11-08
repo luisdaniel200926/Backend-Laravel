@@ -1,16 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col">
-            <h1>Edit Pet {{$pet->name}}</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <a class="btn btn-secondary" href="/pets">Back</a>
-        </div>
-    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">
+                            <h1>Edit Pet {{$pet->name}}</h1>
+                        </div>
+                        <div class="col-3">
+                            <a class="btn btn-secondary" href="/pets">
+                                <img src="https://cdn-icons-png.flaticon.com/512/860/860774.png" width="25" height="25" alt="Back">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
     <div class="row">
         <div class="col">
             @if($errors->any())
@@ -40,5 +46,8 @@
                 </form>
             </table>
         </div>
+        </div>
     </div>
+    </div>
+            </div>
 @endsection
