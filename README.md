@@ -2,4 +2,13 @@
 
 Backend and front end for a basic user based application in which the users can have pets
 
+
+The user can add pets
 ![This is an image](https://github.com/luisdaniel200926/Backend-Laravel/blob/main/NewPet.png)
+The user can visualise his pets
+![This is an image](https://github.com/luisdaniel200926/Backend-Laravel/blob/main/NewPet.png)
+
+The admin can manage the users
+![This is an image](https://github.com/luisdaniel200926/Backend-Laravel/blob/main/UsersData.png)
+
+And other simple features !
